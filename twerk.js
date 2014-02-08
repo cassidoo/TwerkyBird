@@ -4,9 +4,6 @@ void setup()
     size(400, 400);
 }
 
-void draw() {
-
-}
 
 var keys = [];
 
@@ -242,7 +239,7 @@ var FlappyBird = function()
 
     this.controls = function()
     {
-        if((mouseIsPressed || keys[32]) && !this.dead)
+        if((mousePressed || keys[32]) && !this.dead)
         {
             this.descentSpeed = -7;
         }
