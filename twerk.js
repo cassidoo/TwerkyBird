@@ -215,6 +215,9 @@ var FlappyBird = function()
             {
                 this.heightIncrement *= -1;
             }
+            if(mousePressed){
+                mouseIsPressed();
+            }
         }
 
         if(this.dead)
@@ -264,7 +267,9 @@ var initProgram = function()
     objects = [];
     started = false;
 
+
     FlappiestBird = new FlappyBird();
+
 };
 initProgram();
 
@@ -288,6 +293,7 @@ var buttonPressed = function(button)
             switch(button.id)
             {
                 case 0:
+
                     initProgram();
                     break;
                 default:
@@ -335,10 +341,12 @@ var drawPixelatedEllipse = function(x, y, width, height, colour)
     }
 };
 
-var mousePressed = function()
+var mouseIsPressed = function()
 {
+
     if(gameState === 1)
     {
+
         if(!started)
         {
             started = true;
@@ -676,7 +684,20 @@ draw = function()
         {
             if(mouseX >= button.x - 1 && mouseX <= button.x + button.width + 1 && mouseY >= button.y - 1 && mouseY <= button.y + button.height + 1)
             {
+
                 button.pressed = true;
+
+/* These are the lines I (Juan) added.
+ * They seem to be a fair temporary fix.
+ * There may be a better way to handle this, but oh well. */
+                if(mousePressed){
+                        if(gameState==0 && button.id==0){
+                            gameState=1;
+                        }
+                        if(gameState==2){
+                            initProgram();
+                        }
+                }
             }
             else
             {
